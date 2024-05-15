@@ -30,7 +30,7 @@ export const SuccessResponse = (data: object) => {
     return formatResponse({ statusCode: 200, message: 'success', data });
 };
 
-export const ErrorResponse = (code = 1000, error: unknown) => {
+export const ErrorResponse = ({ code = 1000, error }: { code: number, error: unknown }) => {
     if (Array.isArray(error)) {
         const errorObject = error[0].constraints;
         const errorMessage = errorObject[Object.keys(errorObject)[0]] || 'Error Ocurred';

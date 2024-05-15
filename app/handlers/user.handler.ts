@@ -63,7 +63,10 @@ export const Profile = async(event: APIGatewayProxyEventV2) => {
     } else if (httpMethod === 'get') {
         return userService.getProfile(event);
     } else {
-        return ErrorResponse(404, 'requested method not supported!');
+        return ErrorResponse({
+            code: 404,
+            error: 'requested method nos suported!'
+        });
     }
 };
 
@@ -76,7 +79,10 @@ export const Cart = async(event: APIGatewayProxyEventV2) => {
     } else if (httpMethod === 'get') {
         return userService.getCart(event);
     } else {
-        return ErrorResponse(404, 'requested method not supported!');
+        return ErrorResponse({
+            code: 404,
+            error: 'requested method nos suported!'
+        });
     }
 };
 
@@ -89,6 +95,9 @@ export const Payment = async(event: APIGatewayProxyEventV2) => {
     } else if (httpMethod === 'get') {
         return userService.getPaymentMethod(event);
     } else {
-        return ErrorResponse(404, 'requested method not supported!');
+        return ErrorResponse({
+            code: 404,
+            error: 'requested method nos suported!'
+        });
     }
 };
