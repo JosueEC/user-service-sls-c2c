@@ -9,7 +9,7 @@ provider:
   # funciones, por ejemplo development, test, production, etc
   stage: "dev"
   region: us-east-1
-  # Asi es como podemos establecer la configuracion de cors para nuestra
+  # Asi es como podemos establecer la configuración de cors para nuestra
   # API/Servicio
   httpApi:
     cors: true
@@ -33,7 +33,7 @@ functions:
       - httpApi:
           path: /verify
           method: post
-  # De esta forma es como podemos definir varios tipos de metodos HTTP para un
+  # De esta forma es como podemos definir varios tipos de métodos HTTP para un
   # mismo path, events acepta un array y cada elemento del array es definido
   # a partir del '-'
   profile: 
