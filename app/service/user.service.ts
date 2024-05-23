@@ -7,6 +7,7 @@ import { plainToClass } from "class-transformer";
 import { autoInjectable } from "tsyringe";
 import { UserType } from "../models/enums/user-type.enum";
 import { getHashedPassword, getSalt } from "../utility/password";
+import { LoginInput } from "../models/dto/login-input.dto";
 
 /**
  * Para poder inyectar la dependencia en el container es necesario
@@ -62,7 +63,18 @@ export class UserService {
     }
 
     async loginUser(event: APIGatewayProxyEventV2) {
-        return SuccessResponse({ message: 'response from loginUser' });
+        try {
+            const request = plainToClass(LoginInput, event.body);
+            const error = await AppValidationError(request);
+            if (error) return ErrorResponse({ code: 404, error });
+
+            const data = await this.userRepository.findAccount(request.email);
+
+            return SuccessResponse(data);
+        } catch (error) {
+            console.error(error);
+            return ErrorResponse({ code: 500, error });
+        }
     }
 
     async verifyUser(event: APIGatewayProxyEventV2) {
